@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ordinamento di una lista</title>
+</head>
+<body>
+	<h1>Ordinamento di una lista</h1>
 
+	<p>Inserisci qui il testo da ordinare:</p>
+	<textarea id="input-text"></textarea>
+
+	<p>Seleziona il separatore di parole:</p>
+	<select id="word-separator">
+		<option value=" ">Spazio</option>
+		<option value=",">Virgola</option>
+		<option value=".">Punto</option>
+		<option value=";">Punto e virgola</option>
+		<option value="\n">A capo</option>
+	</select>
+
+	<button onclick="sortAscending()">Ordina in ordine crescente</button>
+	<button onclick="sortDescending()">Ordina in ordine decrescente</button>
+
+	<p>Risultato:</p>
+	<ul id="output-list"></ul>
+
+	<script>
+		function parseInputText() {
+			// Ottiene il testo inserito dall'utente
+			var inputText = document.getElementById("input-text").value;
+
+			// Ottiene il separatore selezionato
+			var separator = document.getElementById("word-separator").value;
+
+			// Converte il testo in una lista di stringhe
+			var inputList = inputText.split(separator);
+
+			// Rimuove gli spazi vuoti all'inizio e alla fine di ogni stringa
+			for (var i = 0; i < inputList.length; i++) {
+				inputList[i] = inputList[i].trim();
+			}
+
+			// Rimuove eventuali elementi vuoti dalla lista
+			inputList = inputList.filter(function(str) {
+				return str !== "";
+			});
+
+			return inputList;
+		}
+
+		function sortAscending() {
+			// Converte il testo inserito dall'utente in una lista di parole
+			var inputList = parseInputText();
+
+			// Ordina la lista in ordine crescente
+			inputList.sort();
+
+			// Aggiunge gli elementi ordinati alla lista di output
+			var outputList = document.getElementById("output-list");
+			outputList.innerHTML = "";
+			for (var i = 0; i < inputList.length; i++) {
+				var listItem = document.createElement("li");
+				listItem.innerHTML = inputList[i];
+				outputList.appendChild(listItem);
+			}
+		}
+
+		function sortDescending() {
+			// Converte il testo inserito dall'utente in una lista di parole
+			var inputList = parseInputText();
+
+			// Ordina la lista in ordine decrescente
+			inputList.sort();
+			inputList.reverse();
+
+			// Aggiunge gli elementi ordinati alla lista di output
+			var outputList = document.getElementById("output-list");
+			outputList.innerHTML = "";
+			for (var i = 0; i < inputList.length; i++) {
+				var listItem = document.createElement("li");
+				listItem.innerHTML = inputList[i];
+				outputList.appendChild(listItem);
+			}
+		}
+	</script>
+</body>
+</html>

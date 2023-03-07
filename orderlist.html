@@ -22,7 +22,7 @@
 	<button onclick="sortDescending()">Ordina in ordine decrescente</button>
 
 	<p>Risultato:</p>
-	<ul id="output-list"></ul>
+	<textarea id="output-text" readonly></textarea>
 
 	<script>
 		function parseInputText() {
@@ -45,42 +45,40 @@
 				return str !== "";
 			});
 
-			return inputList;
+			return {separator: separator, words: inputList};
 		}
 
 		function sortAscending() {
 			// Converte il testo inserito dall'utente in una lista di parole
-			var inputList = parseInputText();
+			var input = parseInputText();
+			var separator = input.separator;
+			var inputList = input.words;
 
 			// Ordina la lista in ordine crescente
 			inputList.sort();
 
-			// Aggiunge gli elementi ordinati alla lista di output
-			var outputList = document.getElementById("output-list");
-			outputList.innerHTML = "";
-			for (var i = 0; i < inputList.length; i++) {
-				var listItem = document.createElement("li");
-				listItem.innerHTML = inputList[i];
-				outputList.appendChild(listItem);
-			}
+			// Unisce le parole ordinate utilizzando lo stesso separatore
+			var outputText = inputList.join(separator);
+
+			// Mostra il risultato nella textarea di output
+			document.getElementById("output-text").value = outputText;
 		}
 
 		function sortDescending() {
 			// Converte il testo inserito dall'utente in una lista di parole
-			var inputList = parseInputText();
+			var input = parseInputText();
+			var separator = input.separator;
+			var inputList = input.words;
 
 			// Ordina la lista in ordine decrescente
 			inputList.sort();
 			inputList.reverse();
 
-			// Aggiunge gli elementi ordinati alla lista di output
-			var outputList = document.getElementById("output-list");
-			outputList.innerHTML = "";
-			for (var i = 0; i < inputList.length; i++) {
-				var listItem = document.createElement("li");
-				listItem.innerHTML = inputList[i];
-				outputList.appendChild(listItem);
-			}
+			// Unisce le parole ordinate utilizzando lo stesso separatore
+			var outputText = inputList.join(separator);
+
+			// Mostra il risultato nella textarea di output
+			document.getElementById("output-text").value = outputText;
 		}
 	</script>
 </body>

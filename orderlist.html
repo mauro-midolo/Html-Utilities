@@ -7,18 +7,19 @@
 	<p>Inserisci qui il testo da ordinare:</p>
 	<textarea id="input-text"></textarea>
 
-	<p>Seleziona il separatore di parole:</p>
+	<p>Seleziona il separatore di parole:
 	<select id="word-separator">
-		<option value=" ">Spazio</option>
 		<option value=",">Virgola</option>
+		<option value=" ">Spazio</option>
 		<option value=".">Punto</option>
 		<option value=";">Punto e virgola</option>
 		<option value="\n">A capo</option>
 	</select>
-
+	</p>
+	<p>
 	<button onclick="sortAscending()">Ordina in ordine crescente</button>
 	<button onclick="sortDescending()">Ordina in ordine decrescente</button>
-
+	</p>
 	<p>Risultato:</p>
 	<textarea id="output-text" readonly></textarea>
 
